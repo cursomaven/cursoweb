@@ -36,4 +36,9 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/uno")
+	public String uno(){
+		return "uno";
+	}
+	
 }
