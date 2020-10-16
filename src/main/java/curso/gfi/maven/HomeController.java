@@ -48,4 +48,10 @@ public class HomeController {
 
 	}
 
+	@RequestMapping("/paco")
+	public String paco() {
+		return "paco";
+
+	}
+
 }
