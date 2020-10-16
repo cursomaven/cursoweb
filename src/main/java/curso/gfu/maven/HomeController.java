@@ -41,7 +41,8 @@ public class HomeController {
 	public String dos() {
 		
 		return "dos";
-
+	}
+	
 	@RequestMapping("/uno")
 	public String uno(){
 		return "uno";
