@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class HomeController {
-	
+	String texto;
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -49,4 +49,21 @@ public class HomeController {
 
 	}
 	
+	
+	
+	public void prueba() {
+		int numero=1;
+		
+		
+		
+		
+	}
+	
+	public void prueba1() {
+		int numero=1;
+		
+		
+		
+		
+	}
 }
