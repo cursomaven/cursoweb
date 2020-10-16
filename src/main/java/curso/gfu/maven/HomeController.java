@@ -36,4 +36,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping("/dos")
+	public String dos() {
+		
+		return "dos";
+	}
+	
 }
