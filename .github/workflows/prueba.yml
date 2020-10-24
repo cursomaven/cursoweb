@@ -1,0 +1,49 @@
+name: Create Release
+
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - '*' # Push events to matching *, i.e. 1.0, 20.15.10
+  workflow_dispatch:
+    inputs:
+      Tag:
+        description: 'The name of the tag for this release'
+        default: ''
+        required: true
+      Release:
+        description: 'The name of the release'
+        default: ''
+        required: true
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{github.event.inputs.Tag}}
+          release_name: ${{github.event.inputs.Release}}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+      - name: Upload Release 
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          #asset_path: ./my-artifact.zip
+          #asset_name: my-artifact.zip
+          #asset_content_type: application/zip
